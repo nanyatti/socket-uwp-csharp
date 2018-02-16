@@ -29,12 +29,15 @@ namespace socket_uwp_csharp
             this.InitializeComponent();
         }
 
+        //Create the StreamSocket and establish a connection to the echo server.
+        Windows.Networking.Sockets.StreamSocket socket = new Windows.Networking.Sockets.StreamSocket();
+
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //Create the StreamSocket and establish a connection to the echo server.
-                Windows.Networking.Sockets.StreamSocket socket = new Windows.Networking.Sockets.StreamSocket();
+                ////Create the StreamSocket and establish a connection to the echo server.
+                //Windows.Networking.Sockets.StreamSocket socket = new Windows.Networking.Sockets.StreamSocket();
 
                 //The server hostname that we will be establishing a connection to. We will be running the server and client locally,
                 //so we will use localhost as the hostname.
@@ -45,23 +48,34 @@ namespace socket_uwp_csharp
                 string serverPort = "50005";
                 await socket.ConnectAsync(serverHost, serverPort);
 
-                //Write data to the echo server.
-                //Stream streamOut = socket.OutputStream.AsStreamForWrite();
-                //StreamWriter writer = new StreamWriter(streamOut);
-                //string request = textbox.Text;
-                //await writer.WriteLineAsync(request);
-                //await writer.FlushAsync();
-
-                //Read data from the echo server.
-                Stream streamIn = socket.InputStream.AsStreamForRead();
-                StreamReader reader = new StreamReader(streamIn);
-                string response = await reader.ReadLineAsync();
-                textblock.Text = response;
+                while (true)
+                {
+                    //Read data from the echo server.
+                    Stream streamIn = socket.InputStream.AsStreamForRead();
+                    StreamReader reader = new StreamReader(streamIn);
+                    System.Diagnostics.Debug.WriteLine("ok");
+                    string response = await reader.ReadLineAsync(); //サーバからの入力待ち
+                    textblock.Text = response;
+                }
             }
             catch (Exception)
             {
                 //Handle exception here.            
             }
+        }
+
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //Write data to the echo server.
+            Stream streamOut = socket.OutputStream.AsStreamForWrite();
+            StreamWriter writer = new StreamWriter(streamOut);
+            string request = textbox.Text;
+            await writer.WriteLineAsync(request);
+            await writer.FlushAsync();
+        }
+
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

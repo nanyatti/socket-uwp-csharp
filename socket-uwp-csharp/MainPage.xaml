@@ -8,15 +8,18 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Margin="20,20,20,250">
+        <Grid Margin="20,20,20,66">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Button Content="Connect!!!" HorizontalAlignment="Left" Margin="326,16,0,0" VerticalAlignment="Top" Height="116" Width="581" FontSize="72" RequestedTheme="Default" Click="Button_Click"/>
-            <TextBox x:Name="textbox" HorizontalAlignment="Left" Margin="158,170,0,-278" Grid.RowSpan="3" Text="サーバへ送信する内容を記入してね！" VerticalAlignment="Top" Height="108" Width="890"/>
-            <TextBlock x:Name="textblock" HorizontalAlignment="Left" Margin="162,334,0,-426" Grid.RowSpan="3" Text="サーバから返答が来るよ！" TextWrapping="Wrap" VerticalAlignment="Top" Height="92" Width="878"/>
+            <Button Content="Connect!!!" HorizontalAlignment="Left" Margin="326,20,0,0" VerticalAlignment="Top" Height="116" Width="581" FontSize="72" RequestedTheme="Default" Click="Button_Click"/>
+            <TextBox x:Name="textbox" HorizontalAlignment="Left" Margin="158,24,0,0" Text="サーバへ送信する内容を記入してね！" VerticalAlignment="Top" Height="108" Width="390" Grid.Row="1"/>
+            <TextBlock x:Name="textblock" HorizontalAlignment="Left" Margin="162,31,0,0" Text="サーバから返答が来るよ！" TextWrapping="Wrap" VerticalAlignment="Top" Height="92" Width="380" Grid.Row="2"/>
+            <Button Content="Send!!!" HorizontalAlignment="Left" Margin="630,31,0,0" VerticalAlignment="Top" Height="94" Width="465" Grid.Row="1" FontSize="72" Click="Button_Click_1"/>
+            <Button Content="Receive!!!" HorizontalAlignment="Left" Margin="629,27,0,0" VerticalAlignment="Top" Height="94" Width="465" Grid.Row="2" FontSize="72" Click="Button_Click_2"/>
         </Grid>
     </Grid>
 </Page>
